@@ -1,0 +1,1 @@
+export const API_FIRES = "https://sebastiantare.xyz/api/latest_fires"

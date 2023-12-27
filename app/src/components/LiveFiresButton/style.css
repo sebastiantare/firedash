@@ -1,0 +1,33 @@
+.live-fires-button {
+  align-items: center;
+  border-radius: 83px;
+  display: inline-flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 23px;
+  position: relative;
+}
+
+.live-fires-button .live-fires {
+  color: #ffffff;
+  font-family: "Outfit", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2.64px;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.live-fires-button.property-1-0-default {
+  background-color: #ff2559;
+}
+
+.live-fires-button.property-1-0-variant-3 {
+  background-color: #ff598a;
+}
+
+.live-fires-button.property-1-0-variant-2 {
+  background-color: #ff0101;
+}
