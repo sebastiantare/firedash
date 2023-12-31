@@ -1,0 +1,16 @@
+@keyframes glowing {
+    0%, 100% {
+      box-shadow: 0 0 3px #ff2559, 0 0 6px #ff2559, 0 0 9px #ff2559,
+                  0 0 12px #ff4500, 0 0 15px #ff4500, 0 0 18px #ff4500, 
+                  0 0 18px #ff4500, 0 0 45px #ff4500;
+    }
+    50% {
+      box-shadow: 0 0 4px #ff2559, 0 0 8px #ff2559, 0 0 12px #ff2559, 
+                  0 0 16px #ff4500, 0 0 20px #ff4500, 0 0 24px #ff4500, 
+                  0 0 32px #ff4500, 0 0 90px #ff4500;
+    }
+  }
+  
+  .glow-effect {
+    animation: glowing 1.5s infinite ease-in-out;
+  }

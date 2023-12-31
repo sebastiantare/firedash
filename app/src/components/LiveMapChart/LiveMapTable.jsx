@@ -62,14 +62,6 @@ export const LiveMapTable = ({ data, mapRef }) => {
           </tbody>
         </table>
       </div>
-      <div className="my-4">
-        <a className="text-blue-200" href="https://github.com/sebastiantare">
-          por Sebastán Tare B.
-        </a>
-        <p className="text-white">
-          Datos extraídos de la API de la NASA "FIRMS".
-        </p>
-      </div>
     </div>
   );
 };
