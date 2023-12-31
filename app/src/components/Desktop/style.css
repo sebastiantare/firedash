@@ -8,7 +8,7 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
-  width: 1440px;
+  width: 100%;
 }
 
 .desktop .glow-chile-wrapper {
@@ -20,29 +20,9 @@
   padding: 85px 410px;
   position: absolute;
   top: -62px;
+  width: "100%";
 }
 
-.desktop .map-wrapper {
-  display: flex;
-  align-items: self-end;
-  justify-content: center;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.desktop .glow-chile {
-  align-items: center;
-
-  height: 926.01px !important;
-  margin-bottom: -0.01px !important;
-  margin-left: -0.01px !important;
-  margin-right: -0.01px !important;
-  margin-top: -0.01px !important;
-  position: relative !important;
-  width: 153.01px !important;
-}
 
 .desktop .frame-wrapper {
   align-items: center;
@@ -50,13 +30,13 @@
   height: 978px;
   justify-content: flex-end;
   position: relative;
-  width: 1440px;
+  width: 100%;
 }
 
 .desktop .div {
   height: 978px;
   position: relative;
-  width: 1440px;
+  width: 100%;
 }
 
 .desktop .menus {
@@ -154,4 +134,19 @@
   margin-top: -1px;
   position: relative;
   width: 371px;
+}
+
+
+
+@keyframes colorPulse {
+  0%, 100% {
+    fill: white;
+  }
+  50% {
+    fill: red;
+  }
+}
+
+.pulse-color {
+  animation: colorPulse 2s infinite;
 }

@@ -1,64 +1,45 @@
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/
-
 import React, { useState } from "react";
 import { GlowChile } from "../../icons/GlowChile";
 import { About } from "../About";
 import { LiveFiresButton } from "../LiveFiresButton";
-import { PropertyDefaultWrapper } from "../PropertyDefaultWrapper";
 import { LiveMapChart } from "../LiveMapChart";
-import "./style.css";
 
 export const Desktop = () => {
   const [mapView, setMapView] = useState(0);
 
   return (
-    mapView ?
-      <div className="map-wrapper">
-        {mapView && <LiveMapChart></LiveMapChart>}
-      </div>
-      :
-      <div className="desktop">
+    <div className="flex justify-center min-h-screen bg-[#001233]">
+      <div className="max-w-[1440px] w-full">
+        {!mapView && (
+          <div className="flex flex-col items-center w-full">
+            <div className="flex flex-col justify-between w-full p-4 md:flex-row">
+              <span className="mb-2 text-3xl font-bold text-white md:mb-0">
+                Chilean Fire Dashboard
+              </span>
+              <div className="flex flex-row mx-auto space-x-5 font-bold text-white md:mx-0 md:ml-auto">
+                <About text="data source" className="cursor-pointer" />
+                <About text="about" className="cursor-pointer" />
+                <About text="contact" className="cursor-pointer" />
+                <About text="project" className="cursor-pointer" />
+              </div>
+            </div>
 
-        <div className="title-wrapper">
-          <div className="title">
-            <div className="text-wrapper-2">Chilean Fire Dashboard</div>
-          </div>
-        </div>
+            <div className="relative">
+              <GlowChile className="md:h-[850px] h-[550px]" />
 
-        <div className="glow-chile-wrapper">
-          <GlowChile className="glow-chile" />
-        </div>
-
-        <div className="frame-wrapper">
-          <div className="div">
-            <div className="menus">
-              <About className="data-source" property1="default" text="data source" />
-              <About property1="default" text="about" />
-              <About className="contact" property1="default" text="contact" />
-              <About className="project" property1="default" text="project" />
+              <LiveFiresButton
+                className="bg-[#ff2559] mx-auto left-[3%] top-[30%] md:left-[10%]  min-w-full text-center text-white font-semibold py-2 text-xl leading-normal rounded-full absolute px-[10px] cursor-pointer"
+                style={{
+                  fontFamily: '"Outfit", Helvetica', // Custom font
+                  letterSpacing: "2.64px", // Custom letter spacing
+                }}
+                clickEvent={() => setMapView(1)}
+              />
             </div>
           </div>
-        </div>
-
-
-        <div position={'absolute'} className="frame-fire">
-          <PropertyDefaultWrapper className="fire-instance" property1="default" />
-        </div>
-
-        <div>
-          <div className="frame-2">
-            <LiveFiresButton
-              className="live-fires-button-instance"
-              liveFiresClassName="design-component-instance-node"
-              property1="default"
-              clickEvent={() => setMapView(1)}
-            />
-          </div>
-        </div>
-
+        )}
+        {mapView && <LiveMapChart />}
       </div>
+    </div>
   );
 };

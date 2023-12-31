@@ -15,21 +15,20 @@ export const About = ({ property1, className, text = "about" }) => {
 
   return (
     <div
-      className={`about ${className}`}
+      className={`min-w-fit ${className}`}
       onMouseEnter={() => {
         dispatch("mouse_enter");
       }}
       onMouseLeave={() => {
         dispatch("mouse_leave");
       }}
-      
       onClick={() => {
         switch (className) {
-          case 'data-source':
-            window.open('https://firms.modaps.eosdis.nasa.gov/', '_blank')
+          case "data-source":
+            window.open("https://firms.modaps.eosdis.nasa.gov/", "_blank");
             break;
           default:
-            window.open('https://github.com/sebastiantare', '_blank')
+            window.open("https://github.com/sebastiantare", "_blank");
         }
         dispatch("click");
       }}

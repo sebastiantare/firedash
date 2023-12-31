@@ -11,7 +11,7 @@ export const LiveFiresButton = ({ property1, className, liveFiresClassName, clic
 
   return (
     <div
-      className={`live-fires-button property-1-0-${state.property1} ${className}`}
+      className={`${className}`}
       onMouseEnter={() => {
         dispatch("mouse_enter");
       }}
@@ -19,7 +19,7 @@ export const LiveFiresButton = ({ property1, className, liveFiresClassName, clic
         dispatch("mouse_leave");
       }}
       onClick={() => {
-        clickEvent()
+        clickEvent();
         dispatch("click");
       }}
     >

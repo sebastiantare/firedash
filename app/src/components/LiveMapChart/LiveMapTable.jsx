@@ -1,60 +1,75 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
-export const LiveMapTable = ({ data, mapRef, width }) => {
-
-
-    const handleTableRowClick = (index) => {
-        const selectedFire = data[index];
-
-        if (selectedFire) {
-            const map = mapRef.current;
-            console.log('Selected Fire' + index);
-            map.flyTo({ lat: selectedFire.latitude, lng: selectedFire.longitude }, 14)
-        }
-    };
-
-    const getConfidence = (con) => {
-        switch (con) {
-            case 'n':
-                return 'Normal';
-            case 'h':
-                return 'Alta';
-        }
+export const LiveMapTable = ({ data, mapRef }) => {
+  const handleTableRowClick = (index) => {
+    const selectedFire = data[index];
+    if (selectedFire) {
+      const map = mapRef.current;
+      map.flyTo(
+        { lat: selectedFire.latitude, lng: selectedFire.longitude },
+        14
+      );
     }
+  };
 
-    return (
-        <div style={{ width: width, margin: 'auto' }}>
-            <h2 className="mt-4 text-white">Fecha Incendios {data && data.length > 0 && data[0]['acq_date']}</h2>
-            <table className="table table-dark table-striped mt-3">
-                <thead>
-                    <tr>
-                        <th scope="col">Poder Radiativo del Fuego</th>
-                        <th scope="col">Hora Medición</th>
-                        <th scope="col">Confianza</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map(({ frp, hour, confidence }, index) => (
-                        <tr
-                            key={index}
-                            onClick={() => handleTableRowClick(index)}
-                            style={{ cursor: 'pointer' }}
-                        >
-                            <td>{frp}</td>
-                            <td>{hour}:00</td>
-                            <td>{getConfidence(confidence)}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div className="mt-4">
-                <a className="text-white" href='https://github.com/sebastiantare'>por Sebastán Tare B.</a>
-                <p className="text-white">Datos extraídos de la API de la NASA "FIRMS".</p>
-            </div>
-        </div>
-    );
-}
+  const getConfidence = (con) => {
+    switch (con) {
+      case "n":
+        return "Normal";
+      case "h":
+        return "Alta";
+    }
+  };
+
+  return (
+    <div className="relative mx-4 overflow-x-auto shadow-md sm:rounded-lg md:mx-0">
+      <h2 className="mt-4 mb-2 text-2xl font-bold text-center text-white md:text-left">
+        Fecha Incendios {data && data.length > 0 && data[0]["acq_date"]}
+      </h2>
+      <div className="min-w-full">
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-xl">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Poder Radiativo{" "}
+                <span className="invisible md:visible">del Fuego</span>
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Hora Medición
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Confianza
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map(({ frp, hour, confidence }, index) => (
+              <tr
+                key={index}
+                onClick={() => handleTableRowClick(index)}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <td className="px-6 py-1 font-medium text-gray-900 md:py-4 whitespace-nowrap dark:text-white">
+                  {frp}
+                </td>
+                <td className="px-6 py-1 md:py-4">{hour}:00</td>
+                <td className="px-6 py-4">{getConfidence(confidence)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="my-4">
+        <a className="text-blue-200" href="https://github.com/sebastiantare">
+          por Sebastán Tare B.
+        </a>
+        <p className="text-white">
+          Datos extraídos de la API de la NASA "FIRMS".
+        </p>
+      </div>
+    </div>
+  );
+};
