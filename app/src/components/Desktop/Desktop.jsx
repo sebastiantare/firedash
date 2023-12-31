@@ -3,6 +3,7 @@ import { GlowChile } from "../../icons/GlowChile";
 import { About } from "../About";
 import { LiveFiresButton } from "../LiveFiresButton";
 import { LiveMapChart } from "../LiveMapChart";
+import "./style.css";
 
 export const Desktop = () => {
   const [mapView, setMapView] = useState(0);
@@ -28,7 +29,7 @@ export const Desktop = () => {
               <GlowChile className="md:h-[850px] h-[550px]" />
 
               <LiveFiresButton
-                className="bg-[#ff2559] mx-auto left-[3%] top-[30%] md:left-[10%]  min-w-full text-center text-white font-semibold py-2 text-xl leading-normal rounded-full absolute px-[10px] cursor-pointer"
+                className="bg-[#ff2559] mx-auto left-[3%] top-[30%] md:left-[10%]  min-w-full text-center text-white font-semibold py-2 text-xl leading-normal rounded-full absolute px-[10px] cursor-pointer glow"
                 style={{
                   fontFamily: '"Outfit", Helvetica', // Custom font
                   letterSpacing: "2.64px", // Custom letter spacing
