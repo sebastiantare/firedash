@@ -1,0 +1,16 @@
+@keyframes colorPulse {
+    0%, 100% {
+      fill: white;
+    }
+    25%, 75% {
+      fill: #FF4500; /* Fiery orange color */
+    }
+    50% {
+      fill: red;
+    }
+  }
+  
+  .pulse-color {
+    animation: colorPulse 3s infinite;
+  }
+  

@@ -60,33 +60,38 @@ export const LiveMapChart = () => {
     }, [retryCount]);
 
     const getMapSize = () => {
-        var size = { height: 600, width: 800 }
-        if (screenWidth < 850) size.height = screenWidth
-        if (screenHeight < 700) size.height = screenHeight * 0.7
-        return size
-    }
+      var size = { height: 600, width: "100%" };
+      if (screenWidth < 850) size.height = screenWidth;
+      if (screenHeight < 700) size.height = screenHeight * 0.7;
+      return size;
+    };
 
     const getTableSize = () => {
-        var size = { height: 600, width: 800 }
-        if (screenWidth < 850) size.width = screenWidth
-        if (screenHeight < 700) size.height = screenHeight * 0.7
-        return size
-    }
+      var size = { height: 600, width: "100%" };
+      if (screenWidth < 850) size.width = screenWidth;
+      if (screenHeight < 700) size.height = screenHeight * 0.7;
+      return size;
+    };
 
     return (
-        <div style={{ backgroundColor: '#001f3f', color: '#fff', padding: '20px', alignContent: 'center' }}>
-            <h1 style={{ color: '#fff', textAlign: "center", marginBottom: 20 }}>Dashboard Incendios en Chile</h1>
-            <MapContainer center={position} zoom={5} style={getMapSize()}>
-                <TileLayer
-                    url={`https://api.mapbox.com/styles/v1/sebastiantare/clqk4x12t00fo01qu0wdw0860/tiles/{z}/{x}/{y}?access_token=${mapboxAccessToken}`}
-                    attribution='&copy; <a href="https://www.mapbox.com/">Mapbox</a> contributors'
-                />
+      <div>
+        <h1 className="mt-5 mb-3 text-2xl font-bold text-center text-white md:mt-10 md:mb-2 md:text-5xl">
+          Dashboard Incendios en Chile
+        </h1>
+        <MapContainer center={position} zoom={5} style={getMapSize()}>
+          <TileLayer
+            url={`https://api.mapbox.com/styles/v1/sebastiantare/clqk4x12t00fo01qu0wdw0860/tiles/{z}/{x}/{y}?access_token=${mapboxAccessToken}`}
+            attribution='&copy; <a href="https://www.mapbox.com/">Mapbox</a> contributors'
+          />
 
-                <LiveMapMarkers data={data} mapRef={mapRef} />
+          <LiveMapMarkers data={data} mapRef={mapRef} />
+        </MapContainer>
 
-            </MapContainer>
-
-            <LiveMapTable data={data} mapRef={mapRef} width={getTableSize().width} />
-        </div>
+        <LiveMapTable
+          data={data}
+          mapRef={mapRef}
+          width={getTableSize().width}
+        />
+      </div>
     );
 };

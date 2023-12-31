@@ -9,7 +9,7 @@ export const Frame = () => {
   //ReactGA.pageview(window.location.pathname + window.location.search);
 
   return (
-    <div className="frame">
+    <div>
       <Desktop />
     </div>
   );
