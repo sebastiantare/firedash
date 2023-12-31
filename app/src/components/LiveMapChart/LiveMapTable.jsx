@@ -26,7 +26,7 @@ export const LiveMapTable = ({ data, mapRef }) => {
 
   return (
     <div className="relative mx-4 overflow-x-auto shadow-md sm:rounded-lg md:mx-0">
-      <h2 className="mt-4 mb-2 text-2xl font-bold text-center text-white md:text-left">
+      <h2 className="mt-4 mb-2 text-2xl font-bold text-center text-white lg:text-left">
         Fecha Incendios {data && data.length > 0 && data[0]["acq_date"]}
       </h2>
       <div className="min-w-full">

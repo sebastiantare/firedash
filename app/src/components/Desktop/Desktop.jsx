@@ -26,7 +26,7 @@ export const Desktop = () => {
             </div>
 
             <div className="relative">
-              <GlowChile className="md:h-[850px] h-[550px]" />
+              <GlowChile className="md:h-[1200px] xl:h-[850px] h-[550px]" />
 
               <LiveFiresButton
                 className="bg-[#ff2559] mx-auto left-[3%] top-[30%] md:left-[10%]  min-w-full text-center text-white font-semibold py-2 text-xl leading-normal rounded-full absolute px-[10px] cursor-pointer glow"
