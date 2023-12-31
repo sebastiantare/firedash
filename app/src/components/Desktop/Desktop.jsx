@@ -27,15 +27,17 @@ export const Desktop = () => {
 
             <div className="relative">
               <GlowChile className="md:h-[1200px] xl:h-[850px] h-[550px]" />
-
-              <LiveFiresButton
-                className="bg-[#ff2559] mx-auto left-[3%] top-[30%] md:left-[10%]  min-w-full text-center text-white font-semibold py-2 text-xl leading-normal rounded-full absolute px-[10px] cursor-pointer glow"
-                style={{
-                  fontFamily: '"Outfit", Helvetica', // Custom font
-                  letterSpacing: "2.64px", // Custom letter spacing
-                }}
-                clickEvent={() => setMapView(1)}
-              />
+              <div className="left-[3%] top-[30%] md:left-[10%] absolute flex flex-col justify-center">
+                <span className="mx-auto mb-5 text-4xl">🔥</span>
+                <LiveFiresButton
+                  className="bg-[#ff2559] mx-auto  min-w-full text-center text-white font-semibold py-2 text-xl leading-normal rounded-full px-[10px] cursor-pointer glow"
+                  style={{
+                    fontFamily: '"Outfit", Helvetica',
+                    letterSpacing: "2.64px",
+                  }}
+                  clickEvent={() => setMapView(1)}
+                />
+              </div>
             </div>
           </div>
         )}
