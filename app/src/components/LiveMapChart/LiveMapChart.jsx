@@ -6,6 +6,8 @@ import { LiveMapMarkers } from "./LiveMapMarkers";
 import { mapboxAccessToken } from "../../../secret";
 import { API_FIRES } from "../../config";
 import "./style.css";
+
+
 export const LiveMapChart = () => {
   const [data, setData] = useState([]);
   const [newData, setNewData] = useState([]);
@@ -41,7 +43,7 @@ export const LiveMapChart = () => {
       }
 
       const jsonData = await response.json();
-      const sortedData = jsonData.slice().sort((a, b) => b.frp - a.frp);
+      const sortedData = jsonData.slice().sort((a, b) => b.acq_time - a.acq_time);
 
       if (!isInitialMount.current) {
         setNewData(sortedData); // Set new data for subsequent fetches
@@ -61,31 +63,10 @@ export const LiveMapChart = () => {
   }, [fetchData]);
 
   const getMapSize = () => {
-    var size = { height: 600, width: "100%" };
+    var size = { height: 700, width: "100%" };
     if (screenWidth < 850) size.height = screenWidth;
     if (screenHeight < 700) size.height = screenHeight * 0.7;
     return size;
-  };
-
-  const addNewFire = () => {
-    const newFire = {
-      acq_date: "2023-12-31",
-      acq_time: 453,
-      confidence: "n",
-      daynight: "N",
-      frp: 2.42,
-      hour: 4,
-      latitude: -34.10789 + (Math.random() * (0.5 - 0.01) + 0.01),
-      longitude: -70.45547 + (Math.random() * (0.5 - 0.01) + 0.01),
-      scan: 0.42,
-      track: 0.61,
-    };
-    setNewData((currentData) => [...currentData, newFire]);
-  };
-
-  const mergeFires = () => {
-    setData([...data, ...newData]);
-    setNewData([]);
   };
 
   return (
@@ -93,32 +74,6 @@ export const LiveMapChart = () => {
       <h1 className="mt-5 mb-3 text-2xl font-bold text-center text-white md:mt-10 md:mb-2 md:text-5xl">
         Dashboard Incendios en Chile
       </h1>
-
-      {newData.length > 0 && (
-        <div className="mb-4 text-center">
-          <button
-            className="px-4 py-2 ml-2 font-bold text-white bg-green-500 rounded hover:bg-green-700"
-            onClick={mergeFires}
-          >
-            Update Fires
-          </button>
-        </div>
-      )}
-
-      <div className="mb-4 text-center">
-        <button
-          className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-          onClick={() => setData([])}
-        >
-          Reset
-        </button>
-        <button
-          className="px-4 py-2 ml-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-          onClick={addNewFire}
-        >
-          New Fire
-        </button>
-      </div>
 
       <div style={{ position: "relative" }}>
         <MapContainer center={position} zoom={5} style={getMapSize()}>
@@ -129,21 +84,6 @@ export const LiveMapChart = () => {
           <LiveMapMarkers data={data} mapRef={mapRef} />
         </MapContainer>
       </div>
-
-      {newData.length > 0 && (
-        <div className="flex flex-col items-center w-full mt-10">
-          <h2 className="inline-block p-2 mx-auto mb-4 text-lg font-semibold text-white bg-red-500 rounded">
-            New Fires: {newData.length}
-          </h2>
-          <div className="w-full glow-effect">
-            <LiveMapTable
-              data={newData}
-              mapRef={mapRef}
-              width={getMapSize().width}
-            />
-          </div>
-        </div>
-      )}
 
       <LiveMapTable data={data} mapRef={mapRef} width={getMapSize().width} />
 

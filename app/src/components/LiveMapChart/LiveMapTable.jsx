@@ -4,6 +4,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
 export const LiveMapTable = ({ data, mapRef }) => {
+
   const handleTableRowClick = (index) => {
     const selectedFire = data[index];
     if (selectedFire) {
@@ -21,6 +22,8 @@ export const LiveMapTable = ({ data, mapRef }) => {
         return "Normal";
       case "h":
         return "Alta";
+      default:
+        return "";
     }
   };
 
@@ -50,7 +53,7 @@ export const LiveMapTable = ({ data, mapRef }) => {
               <tr
                 key={index}
                 onClick={() => handleTableRowClick(index)}
-                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                className={` bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600`}
               >
                 <td className="px-6 py-1 font-medium text-gray-900 md:py-4 whitespace-nowrap dark:text-white">
                   {frp}

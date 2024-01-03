@@ -3,6 +3,7 @@ import { GlowChile } from "../../icons/GlowChile";
 import { About } from "../About";
 import { LiveFiresButton } from "../LiveFiresButton";
 import { LiveMapChart } from "../LiveMapChart";
+import { FireAnimation } from '../FireAnimation';
 import "./style.css";
 
 export const Desktop = () => {
@@ -14,7 +15,7 @@ export const Desktop = () => {
         {!mapView && (
           <div className="flex flex-col items-center w-full">
             <div className="flex flex-col justify-between w-full p-4 md:flex-row">
-              <span className="mb-2 text-3xl font-bold text-white md:mb-0">
+              <span className="mb-2 text-5xl font-bold text-white md:mb-0">
                 Chilean Fire Dashboard
               </span>
               <div className="flex flex-row mx-auto space-x-5 font-bold text-white md:mx-0 md:ml-auto">
@@ -26,11 +27,12 @@ export const Desktop = () => {
             </div>
 
             <div className="relative">
+
               <GlowChile className="md:h-[1200px] xl:h-[850px] h-[550px]" />
-              <div className="left-[3%] top-[30%] md:left-[10%] absolute flex flex-col justify-center">
-                <span className="mx-auto mb-5 text-4xl">🔥</span>
+
+              <div className="absolute left-[3%] top-[30%] md:left-[10%] flex flex-col items-center">
                 <LiveFiresButton
-                  className="bg-[#ff2559] mx-auto  min-w-full text-center text-white font-semibold py-2 text-xl leading-normal rounded-full px-[10px] cursor-pointer glow"
+                  className="bg-[#ff2559] mx-auto  min-w-full text-center text-white font-semibold py-1 text-xl leading-normal rounded-full px-[18px] cursor-pointer glow"
                   style={{
                     fontFamily: '"Outfit", Helvetica',
                     letterSpacing: "2.64px",
@@ -38,6 +40,7 @@ export const Desktop = () => {
                   clickEvent={() => setMapView(1)}
                 />
               </div>
+
             </div>
           </div>
         )}

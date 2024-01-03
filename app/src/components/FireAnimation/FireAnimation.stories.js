@@ -1,8 +1,8 @@
-import { PropertyDefaultWrapper } from ".";
+import { FireAnimation } from ".";
 
 export default {
-  title: "Components/PropertyDefaultWrapper",
-  component: PropertyDefaultWrapper,
+  title: "Components/FireAnimation",
+  component: FireAnimation,
   argTypes: {
     property1: {
       options: ["variant-4", "variant-2", "variant-3", "default"],

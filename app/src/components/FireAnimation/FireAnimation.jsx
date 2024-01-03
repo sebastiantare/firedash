@@ -6,15 +6,12 @@ Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcN
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { Fire } from "../../icons/Fire";
-import { Fire2 } from "../../icons/Fire2";
-import { Fire3 } from "../../icons/Fire3";
-import { Fire4 } from "../../icons/Fire4";
 import "./style.css";
 import { animated, useSpring, useTransition } from '@react-spring/web'
 
-export const PropertyDefaultWrapper = ({ property1, className }) => {
+export const FireAnimation = ({ property1, className }) => {
 
-  fireStyle = {  height: 75, width: 59}
+  fireStyle = { height: 75, width: 59 }
 
   const { width, height } = useSpring({
     from: { width: fireStyle.width, height: fireStyle.height },
@@ -27,17 +24,19 @@ export const PropertyDefaultWrapper = ({ property1, className }) => {
   });
 
   return (
-    <animated.svg
-      width={width}
-      height={height}
-      viewBox="0 0 100 100"
-    >
-      <Fire className={property1} />
-    </animated.svg>
+    <div>
+      <animated.svg
+        width={width}
+        height={height}
+        viewBox="0 0 100 100"
+      >
+        <Fire className={property1} />
+      </animated.svg>
+    </div>
   );
 
 }
 
-PropertyDefaultWrapper.propTypes = {
+FireAnimation.propTypes = {
   property1: PropTypes.oneOf(["variant-4", "variant-2", "variant-3", "default"]),
 };

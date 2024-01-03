@@ -1,16 +1,24 @@
 @keyframes glowing {
   0%, 100% {
-    box-shadow: 0 0 3px #ff2559, 0 0 6px #ff2559, 0 0 9px #ff2559,
-                0 0 12px #ff4500, 0 0 15px #ff4500, 0 0 18px #ff4500, 
-                0 0 18px #ff4500, 0 0 45px #ff4500;
+    box-shadow: 0 0 0 rgba(255, 37, 89, 0);
+  }
+  25% {
+    box-shadow: 0 0 10px rgba(255, 37, 89, 0.3), 0 0 20px rgba(255, 37, 89, 0.3), 0 0 30px rgba(255, 37, 89, 0.3),
+                0 0 40px rgba(255, 37, 89, 0.3), 0 0 50px rgba(255, 37, 89, 0.3), 0 0 60px rgba(255, 37, 89, 0.3),
+                0 0 80px rgba(255, 37, 89, 0.3), 0 0 120px rgba(255, 37, 89, 0.3);
   }
   50% {
-    box-shadow: 0 0 4px #ff2559, 0 0 8px #ff2559, 0 0 12px #ff2559, 
-                0 0 16px #ff4500, 0 0 20px #ff4500, 0 0 24px #ff4500, 
-                0 0 32px #ff4500, 0 0 90px #ff4500;
+    box-shadow: 0 0 20px rgba(255, 37, 89, 0.3), 0 0 40px rgba(255, 37, 89, 0.3), 0 0 60px rgba(255, 37, 89, 0.3),
+                0 0 80px rgba(255, 37, 89, 0.3), 0 0 100px rgba(255, 37, 89, 0.3), 0 0 120px rgba(255, 37, 89, 0.3),
+                0 0 160px rgba(255, 37, 89, 0.3), 0 0 240px rgba(255, 37, 89, 0.3);
+  }
+  75% {
+    box-shadow: 0 0 10px rgba(255, 37, 89, 0.3), 0 0 20px rgba(255, 37, 89, 0.3), 0 0 30px rgba(255, 37, 89, 0.3),
+                0 0 40px rgba(255, 37, 89, 0.3), 0 0 50px rgba(255, 37, 89, 0.3), 0 0 60px rgba(255, 37, 89, 0.3),
+                0 0 80px rgba(255, 37, 89, 0.3), 0 0 120px rgba(255, 37, 89, 0.3);
   }
 }
 
 .glow {
-  animation: glowing 1.5s infinite ease-in-out;
+  animation: glowing 3s infinite ease-in-out;
 }
