@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { getConfidence, formatHour } from './common';
 
 export const LiveMapMarkers = ({ data, mapRef }) => {
     const map = useMap();
@@ -27,24 +28,15 @@ export const LiveMapMarkers = ({ data, mapRef }) => {
         return svgIcon
     }
 
-    const getConfidence = (con) => {
-        switch (con) {
-            case 'n':
-                return 'Normal';
-            case 'h':
-                return 'Alta';
-        }
-    }
-
     return (
-        data.sort().map(({ latitude, longitude, frp, acq_date, hour, confidence}, index) => (
+        data.sort().map(({ latitude, longitude, frp, acq_date, acq_time, confidence}, index) => (
             <Marker
                 icon={getIcon(frp)}
                 key={index}
                 position={{ lat: latitude, lng: longitude }}>
                 <Popup>
                     <p>Poder Radiativo del Fuego: {frp}</p>
-                    <p>Hora Captura: ~{hour}:00</p>
+                    <p>Hora Captura: {formatHour(acq_time)}</p>
                     <p>Confianza: {getConfidence(confidence)}</p>
                     <a target="_blank" href={`https://www.google.com/maps/place/${latitude},${longitude}/@${latitude},${longitude},15z`}>Ver en google maps</a>
                 </Popup>

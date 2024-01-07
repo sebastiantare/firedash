@@ -22,3 +22,12 @@
 .glow {
   animation: glowing 3s infinite ease-in-out;
 }
+
+.liveMapChartInitial {
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.liveMapChartFinal {
+  opacity: 1;
+}

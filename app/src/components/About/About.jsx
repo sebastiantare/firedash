@@ -23,8 +23,8 @@ export const About = ({ property1, className, text = "about" }) => {
         dispatch("mouse_leave");
       }}
       onClick={() => {
-        switch (className) {
-          case "data-source":
+        switch (text) {
+          case "data source":
             window.open("https://firms.modaps.eosdis.nasa.gov/", "_blank");
             break;
           default:

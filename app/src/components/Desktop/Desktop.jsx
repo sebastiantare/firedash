@@ -16,7 +16,7 @@ export const Desktop = () => {
           <div className="flex flex-col items-center w-full">
             <div className="flex flex-col justify-between w-full p-4 md:flex-row">
               <span className="mb-2 text-5xl font-bold text-white md:mb-0">
-                Chilean Fire Dashboard
+                Dashboard Incendios en Chile
               </span>
               <div className="flex flex-row mx-auto space-x-5 font-bold text-white md:mx-0 md:ml-auto">
                 <About text="data source" className="cursor-pointer" />

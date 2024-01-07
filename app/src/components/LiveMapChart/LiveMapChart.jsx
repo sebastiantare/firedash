@@ -17,8 +17,13 @@ export const LiveMapChart = () => {
   const [retryCount, setRetryCount] = useState(0);
   const mapRef = useRef(null);
   const isInitialMount = useRef(true);
+  const ref = useRef(null);
 
   useEffect(() => {
+    if (ref.current) {
+      ref.current.className = "liveMapChartFinal";
+    }
+
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
       setScreenHeight(window.innerHeight);
@@ -43,7 +48,14 @@ export const LiveMapChart = () => {
       }
 
       const jsonData = await response.json();
-      const sortedData = jsonData.slice().sort((a, b) => b.acq_time - a.acq_time);
+      // Sort data by acq_time and frp descending
+      const sortedData = jsonData.slice().sort((a, b) => {
+        if (a.acq_time === b.acq_time) {
+          return b.frp - a.frp;
+        }
+        return b.acq_time - a.acq_time;
+      });
+      
 
       if (!isInitialMount.current) {
         setNewData(sortedData); // Set new data for subsequent fetches
@@ -51,6 +63,8 @@ export const LiveMapChart = () => {
         isInitialMount.current = false;
         setData(sortedData); // Set initial data
       }
+
+      console.log(jsonData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -70,7 +84,7 @@ export const LiveMapChart = () => {
   };
 
   return (
-    <div>
+    <div className="liveMapChartInitial" ref={ref}>
       <h1 className="mt-5 mb-3 text-2xl font-bold text-center text-white md:mt-10 md:mb-2 md:text-5xl">
         Dashboard Incendios en Chile
       </h1>
