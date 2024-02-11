@@ -1,0 +1,13 @@
+/* Change react-datepicker css */
+
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  outline: none;
+  transition: all 0.3s;
+}

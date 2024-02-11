@@ -15,7 +15,6 @@ export const Dashboard = () => {
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   const [retryCount, setRetryCount] = useState(0);
   const mapRef = useRef(null);
-  const isInitialMount = useRef(true);
   const ref = useRef(null);
 
   useEffect(() => {

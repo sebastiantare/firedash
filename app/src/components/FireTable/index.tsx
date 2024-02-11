@@ -5,6 +5,9 @@ import L from "leaflet";
 import { formatHour, getConfidence, comunas } from '../../common';
 import Select from 'react-select';
 import { FiresChart } from '../FiresChart';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import "./style.css";
 
 type TableProps = {
     data: any;
@@ -34,79 +37,77 @@ type comunasType = {
 
 const data = [
     {
-      name: 'Page A',
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
+        name: 'Page A',
+        uv: 4000,
+        pv: 2400,
+        amt: 2400,
     },
     {
-      name: 'Page B',
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
+        name: 'Page B',
+        uv: 3000,
+        pv: 1398,
+        amt: 2210,
     },
     {
-      name: 'Page C',
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
+        name: 'Page C',
+        uv: 2000,
+        pv: 9800,
+        amt: 2290,
     },
     {
-      name: 'Page D',
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
+        name: 'Page D',
+        uv: 2780,
+        pv: 3908,
+        amt: 2000,
     },
     {
-      name: 'Page E',
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
+        name: 'Page E',
+        uv: 1890,
+        pv: 4800,
+        amt: 2181,
     },
     {
-      name: 'Page F',
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
+        name: 'Page F',
+        uv: 2390,
+        pv: 3800,
+        amt: 2500,
     },
     {
-      name: 'Page G',
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
+        name: 'Page G',
+        uv: 3490,
+        pv: 4300,
+        amt: 2100,
     },
-  ];
+];
 
-export const FireTable = (props:TableProps) => {
+export const FireTable = (props: TableProps) => {
     const { data, mapRef } = props;
 
+    const [startDate, setStartDate] = useState<Date>(new Date());
     const [sortField, setSortField] = useState('frp');
     const [sortDirection, setSortDirection] = useState('desc');
     const [selectedComuna, setSelectedComuna] = useState<comunasType | null>(null);
 
-    const comunasOptions:comunasType[] = comunas.map((comuna) => {
-        const count = data.filter((fire:TableRowProps) => fire.comuna === comuna).length;
+    const comunasOptions: comunasType[] = comunas.map((comuna) => {
+        const count = data.filter((fire: TableRowProps) => fire.comuna === comuna).length;
         return { value: comuna, label: `${comuna} (${count})`, count: count };
     });
 
-    /** @param {number} index **/
-    const handleTableRowClick = (index:number) => {
-        const selectedFire = sortedData[index];
-        console.log(comunas)
-        // Scroll to top
+    /** @param {number} latitude, {number} longitude **/
+    const handleTableRowClick = (latitude: number, longitude: number) => {
         window.scrollTo(0, 0);
 
-        if (selectedFire) {
+        if (latitude && longitude) {
             const map = mapRef.current;
             map.flyTo(
-                { lat: selectedFire.latitude, lng: selectedFire.longitude },
+                { lat: latitude, lng: longitude },
                 14
             );
         }
     };
 
     /** @param {string} field **/
-    const handleSort = (field:string) => {
+    const handleSort = (field: string) => {
         let direction = 'asc';
         if (sortField === field && sortDirection === 'asc') {
             direction = 'desc';
@@ -126,15 +127,21 @@ export const FireTable = (props:TableProps) => {
         console.log('selectedComuna', selectedComuna);
     }, [selectedComuna]);
 
-    const handleSelectChange = (option:comunasType | null) => {
+    const handleSelectChange = (option: comunasType | null) => {
         setSelectedComuna(option);
     };
 
     return (
         <div className="relative mx-4 overflow-x-auto shadow-md sm:rounded-lg md:mx-0">
 
-            <h2 className="mt-4 mb-2 text-2xl font-bold text-center text-white lg:text-left">
-                Fecha Incendios {data && data.length > 0 && data[0]["acq_date"]}
+            <h2 className="flex mt-4 gap-3 mb-2 text-2xl font-bold text-center text-white lg:text-left">
+                Fecha Incendios
+                <div className="text-xs text-gray-400">
+                    <DatePicker
+                        selected={startDate}
+                        onChange={(date: Date) => setStartDate(date)}
+                    />
+                </div>
             </h2>
 
             <h4 className="mb-2 text-xl font-bold text-center text-white lg:text-left">
@@ -219,20 +226,20 @@ export const FireTable = (props:TableProps) => {
                     <tbody>
                         {
                             sortedData.filter((fire) => selectedComuna === null || fire.comuna === selectedComuna.value)
-                            .map(({ frp, acq_time, confidence, comuna, latitude, longitude }, index) => (
-                                <tr
-                                    key={index}
-                                    onClick={() => handleTableRowClick(index)}
-                                    className={` bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600`}
-                                >
-                                    <td className="px-6 py-1 font-medium text-gray-900 md:py-4 whitespace-nowrap dark:text-white">
-                                        {frp}
-                                    </td>
-                                    <td className="px-6 py-1 md:py-4">{formatHour(acq_time)}</td>
-                                    <td className="px-6 py-4">{getConfidence(confidence)}</td>
-                                    <td className="px-6 py-4">{comuna}</td>
-                                </tr>
-                            ))
+                                .map(({ frp, acq_time, confidence, comuna, latitude, longitude }, index) => (
+                                    <tr
+                                        key={index}
+                                        onClick={() => handleTableRowClick(latitude, longitude)}
+                                        className={` bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600`}
+                                    >
+                                        <td className="px-6 py-1 font-medium text-gray-900 md:py-4 whitespace-nowrap dark:text-white">
+                                            {frp}
+                                        </td>
+                                        <td className="px-6 py-1 md:py-4">{formatHour(acq_time)}</td>
+                                        <td className="px-6 py-4">{getConfidence(confidence)}</td>
+                                        <td className="px-6 py-4">{comuna}</td>
+                                    </tr>
+                                ))
                         }
                     </tbody>
                 </table>
